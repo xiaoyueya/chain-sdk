@@ -59,11 +59,22 @@ func main() {
 		Symbol:          "USDC",
 		Decimals:        6,
 		ContractAddress: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
-		IsXXX20:         true,
+		IsErc20:         true,
 	}
 	err = services.AddOrUpdateCoin(coinInfo)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Printf("coin info=%v\n", coinInfo)
+	info, err := services.GetChain(chainInfo.Chain)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("info=%v\n", info)
+
+	cInfo, err := services.GetCoinOrToken(chainInfo.Chain, coinInfo.CustomName)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("cinfo=%v\n", cInfo)
 }
