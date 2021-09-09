@@ -15,13 +15,13 @@ func AddOrUpdateCoin(coinInfo *common.CoinOrToken) error {
 		return err
 	}
 
-	key := common.BuildCoinKey(coinInfo.Chain, coinInfo.ChainId, coinInfo.Symbol)
+	key := common.BuildCoinKey(coinInfo.Chain, coinInfo.CustomName)
 
 	return redisService.client.Set(key, buf, 0).Err()
 }
 
-func GetCoinOrToken(chain, chainId, symbol string) (*common.CoinOrToken, error) {
-	key := common.BuildCoinKey(chain, chainId, symbol)
+func GetCoinOrToken(chain, chainId, customName string) (*common.CoinOrToken, error) {
+	key := common.BuildCoinKey(chain, customName)
 
 	buf, err := redisService.client.Get(key).Bytes()
 	if err != nil {
