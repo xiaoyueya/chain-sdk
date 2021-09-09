@@ -17,7 +17,7 @@ type CoinOrToken struct {
 	Symbol          string `json:"symbol"`
 	Decimals        uint   `json:"decimals"`
 	ContractAddress string `json:"contract_address"`
-	IsXXX20         bool   `json:"is_xxx_20"`
+	IsErc20         bool   `json:"is_erc_20"`
 }
 
 type RedisConfig struct {

@@ -15,13 +15,13 @@ func AddOrUpdateChain(chainInfo *common.ChainInfo) error {
 		return err
 	}
 
-	key := common.BuildChainKey(chainInfo.Chain, chainInfo.ChainID)
+	key := common.BuildChainKey(chainInfo.Chain)
 
 	return redisService.client.Set(key, buf, 0).Err()
 }
 
-func GetChain(chain, chainId string) (*common.ChainInfo, error) {
-	key := common.BuildChainKey(chain, chainId)
+func GetChain(chain string) (*common.ChainInfo, error) {
+	key := common.BuildChainKey(chain)
 
 	buf, err := redisService.client.Get(key).Bytes()
 
