@@ -20,7 +20,7 @@ func AddOrUpdateCoin(coinInfo *common.CoinOrToken) error {
 	return redisService.client.Set(key, buf, 0).Err()
 }
 
-func GetCoinOrToken(chain, customName string) (*common.CoinOrToken, error) {
+func GetCoinOrToken(customName string) (*common.CoinOrToken, error) {
 	key := common.BuildCoinKey(customName)
 
 	buf, err := redisService.client.Get(key).Bytes()

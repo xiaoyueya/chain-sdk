@@ -72,7 +72,7 @@ func main() {
 	}
 	fmt.Printf("info=%v\n", info)
 
-	cInfo, err := services.GetCoinOrToken(chainInfo.Chain, coinInfo.CustomName)
+	cInfo, err := services.GetCoinOrToken(coinInfo.CustomName)
 	if err != nil {
 		panic(err)
 	}
