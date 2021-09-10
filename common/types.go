@@ -7,6 +7,7 @@ type ChainInfo struct {
 	Symbol                  string   `json:"symbol"`
 	BlockExplorerTxURL      string   `json:"block_explorer_tx_url"`
 	BlockExplorerAddressURL string   `json:"block_explorer_address_url"`
+	GasCustomCoin           string   `json:"gas_custom_coin"`
 }
 
 type CoinOrToken struct {

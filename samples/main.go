@@ -45,6 +45,7 @@ func main() {
 		Symbol:                  "FTM",
 		BlockExplorerAddressURL: "https://ftmscan.com/address/%s",
 		BlockExplorerTxURL:      "https://ftmscan.com/tx/%s",
+		GasCustomCoin:           "FTM",
 	}
 	fmt.Printf("chain info=%v\n", chainInfo)
 	err = services.AddOrUpdateChain(chainInfo)
