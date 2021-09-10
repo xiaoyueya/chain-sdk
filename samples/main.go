@@ -54,12 +54,12 @@ func main() {
 	coinInfo := &common.CoinOrToken{
 		Chain:           "FTM",
 		ChainId:         "250",
-		CustomName:      "FRC20USDC",
-		TokenName:       "USD coin",
-		Symbol:          "USDC",
-		Decimals:        6,
-		ContractAddress: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
-		IsErc20:         true,
+		CustomName:      "FTM",
+		TokenName:       "Fantom Coin",
+		Symbol:          "FTM",
+		Decimals:        18,
+		ContractAddress: "",
+		IsErc20:         false,
 	}
 	err = services.AddOrUpdateCoin(coinInfo)
 	if err != nil {
