@@ -78,4 +78,25 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("cinfo=%v\n", cInfo)
+
+	coinInfo = &common.CoinOrToken{
+		Chain:           "FTM",
+		ChainId:         "250",
+		CustomName:      "FRC20USDC",
+		TokenName:       "USD Coin",
+		Symbol:          "USDC",
+		Decimals:        6,
+		ContractAddress: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
+		IsErc20:         true,
+	}
+	err = services.AddOrUpdateCoin(coinInfo)
+	if err != nil {
+		panic(err)
+	}
+
+	tokens, err := services.GetAllXrc20s()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("tokens=%v\n", tokens)
 }

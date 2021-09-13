@@ -17,7 +17,15 @@ func AddOrUpdateCoin(coinInfo *common.CoinOrToken) error {
 
 	key := common.BuildCoinKey(coinInfo.CustomName)
 
+	if coinInfo.IsErc20 {
+		redisService.client.SAdd(common.BucketCoinSetKey, coinInfo.CustomName)
+	}
+
 	return redisService.client.Set(key, buf, 0).Err()
+}
+
+func GetAllXrc20s() ([]string, error) {
+	return redisService.client.SMembers(common.BucketCoinSetKey).Result()
 }
 
 func GetCoinOrToken(customName string) (*common.CoinOrToken, error) {
