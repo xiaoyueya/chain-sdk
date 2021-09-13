@@ -33,3 +33,29 @@ type RedisConfig struct {
 	IdleCheckFrequency int32
 	Password           string
 }
+
+type LogConfig struct {
+	Module                       string `json:"module"`
+	Level                        string `json:"level"`
+	Filename                     string `json:"filename"`
+	MaxFileSizeInMB              int    `json:"max_file_size_in_mb"`
+	MaxBackupsOfLogFiles         int    `json:"max_backups_of_log_files"`
+	MaxAgeToRetainLogFilesInDays int    `json:"max_age_to_retain_log_files_in_days"`
+	UseConsoleLogger             bool   `json:"use_console_logger"`
+	UseFileLogger                bool   `json:"use_file_logger"`
+	Compress                     bool   `json:"compress"`
+}
+
+func (cfg *LogConfig) Validate() {
+	if cfg.UseFileLogger {
+		if cfg.Filename == "" {
+			panic("filename should not be empty if use file logger")
+		}
+		if cfg.MaxFileSizeInMB <= 0 {
+			panic("max_file_size_in_mb should be larger than 0 if use file logger")
+		}
+		if cfg.MaxBackupsOfLogFiles <= 0 {
+			panic("max_backups_off_log_files should be larger than 0 if use file logger")
+		}
+	}
+}

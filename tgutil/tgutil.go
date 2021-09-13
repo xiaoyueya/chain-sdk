@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/xiaoyueya/chain-sdk/bwlog"
 	"math/big"
 )
 
@@ -11,11 +12,10 @@ import (
 func SendTgMsg(botKey string, chatId string, title string, msgLines ...string) {
 	go func() {
 		chatIdInt64, _ := big.NewInt(0).SetString(chatId, 0)
-
-		//bot, err := tgbotapi.NewBotAPI("1918100635:AAFjqkYcCIDmltFSQED7G1ZkUPpvMULO5qU")
 		bot, err := tgbotapi.NewBotAPI(botKey)
 		if err != nil {
-			fmt.Printf("new tg bot error=%v\n", err)
+			bwlog.Logger.Errorf("new tg bog error=%v\n", err)
+			return
 		}
 
 		bufBuf := new(bytes.Buffer)
@@ -33,8 +33,9 @@ func SendTgMsg(botKey string, chatId string, title string, msgLines ...string) {
 		msg.DisableWebPagePreview = true
 		reply, err := bot.Send(msg)
 		if err != nil {
-			fmt.Printf("tg bog send msg error=%v\n", err)
+			bwlog.Logger.Errorf("tg bog send msg error=%v\n", err)
+			return
 		}
-		fmt.Printf("reply=%s\n", reply.Text)
+		bwlog.Logger.Debugf("reply=%s\n", reply.Text)
 	}()
 }
