@@ -8,6 +8,6 @@ require (
 	github.com/onsi/gomega v1.16.0 // indirect
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
-	github.com/tendermint/tendermint v0.34.13
+	github.com/tendermint/tendermint v0.32.3
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 )
