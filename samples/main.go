@@ -38,15 +38,25 @@ func main() {
 		panic(err)
 	}
 
+	//chainInfo := &common.ChainInfo{
+	//	Chain:                   "FTM",
+	//	ChainID:                 "250",
+	//	RPCUrls:                 []string{"https://rpc.ftm.tools/"},
+	//	Symbol:                  "FTM",
+	//	BlockExplorerAddressURL: "https://ftmscan.com/address/%s",
+	//	BlockExplorerTxURL:      "https://ftmscan.com/tx/%s",
+	//	GasCustomCoin:           "FTM",
+	//}
 	chainInfo := &common.ChainInfo{
 		Chain:                   "FTM",
-		ChainID:                 "250",
-		RPCUrls:                 []string{"https://rpc.ftm.tools/"},
+		ChainID:                 "4002",
+		RPCUrls:                 []string{"https://rpc.testnet.fantom.network/"},
 		Symbol:                  "FTM",
-		BlockExplorerAddressURL: "https://ftmscan.com/address/%s",
-		BlockExplorerTxURL:      "https://ftmscan.com/tx/%s",
+		BlockExplorerAddressURL: "https://testnet.ftmscan.com/address/%s",
+		BlockExplorerTxURL:      "https://testnet.ftmscan.com/tx/%s",
 		GasCustomCoin:           "FTM",
 	}
+
 	fmt.Printf("chain info=%v\n", chainInfo)
 	err = services.AddOrUpdateChain(chainInfo)
 	if err != nil {
@@ -54,7 +64,7 @@ func main() {
 	}
 	coinInfo := &common.CoinOrToken{
 		Chain:           "FTM",
-		ChainId:         "250",
+		ChainId:         "4002",
 		CustomName:      "FTM",
 		TokenName:       "Fantom Coin",
 		Symbol:          "FTM",
@@ -86,7 +96,7 @@ func main() {
 		TokenName:       "USD Coin",
 		Symbol:          "USDC",
 		Decimals:        6,
-		ContractAddress: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
+		ContractAddress: "0x9740c9375200ace24af03d7aa488b031877735c5",
 		IsErc20:         true,
 	}
 	err = services.AddOrUpdateCoin(coinInfo)
