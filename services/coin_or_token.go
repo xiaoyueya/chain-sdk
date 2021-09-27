@@ -19,7 +19,7 @@ func AddOrUpdateCoin(coinInfo *common.CoinOrToken) error {
 
 	if coinInfo.IsErc20 {
 		redisService.client.SAdd(common.BucketCoinSetKey, coinInfo.CustomName)
-		redisService.client.SAdd(coinInfo.GetContractSetKey(), coinInfo.ContractAddress)
+		redisService.client.SAdd(coinInfo.GetContractSetKey(), coinInfo.CustomName)
 	}
 
 	return redisService.client.Set(key, buf, 0).Err()
