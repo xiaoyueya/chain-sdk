@@ -21,6 +21,10 @@ type CoinOrToken struct {
 	IsErc20         bool   `json:"is_erc_20"`
 }
 
+func (cot *CoinOrToken) GetContractSetKey() string {
+	return BuildChainContractsKey(cot.Chain)
+}
+
 type RedisConfig struct {
 	Addr               string
 	DB                 int

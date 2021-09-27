@@ -19,6 +19,7 @@ func AddOrUpdateCoin(coinInfo *common.CoinOrToken) error {
 
 	if coinInfo.IsErc20 {
 		redisService.client.SAdd(common.BucketCoinSetKey, coinInfo.CustomName)
+		redisService.client.SAdd(coinInfo.GetContractSetKey(), coinInfo.ContractAddress)
 	}
 
 	return redisService.client.Set(key, buf, 0).Err()
@@ -26,6 +27,11 @@ func AddOrUpdateCoin(coinInfo *common.CoinOrToken) error {
 
 func GetAllXrc20s() ([]string, error) {
 	return redisService.client.SMembers(common.BucketCoinSetKey).Result()
+}
+
+// GetAllChainContracts 获取某链下所有的xrc20的合约地址
+func GetAllChainContracts(chain string) ([]string, error) {
+	return redisService.client.SMembers(common.BuildChainContractsKey(chain)).Result()
 }
 
 func GetCoinOrToken(customName string) (*common.CoinOrToken, error) {
