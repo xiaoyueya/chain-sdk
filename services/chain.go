@@ -59,6 +59,9 @@ func AvailableClient(info *common.ChainInfo) (*ethclient.Client, error) {
 	if err != nil {
 		return nil, err
 	}
+	if height == 0 {
+		return nil, errors.New("rpc url invalid")
+	}
 	bwlog.Logger.Info("got available client success,rpc index = %d,block height=%d\n", info.RpcIndex, height)
 	return client, err
 }
