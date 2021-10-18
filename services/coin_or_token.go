@@ -29,7 +29,7 @@ func GetAllXrc20s() ([]string, error) {
 	return redisService.client.SMembers(common.BucketCoinSetKey).Result()
 }
 
-// GetAllChainContracts 获取某链下所有的xrc20的合约地址
+// GetAllChainCoinKeys 获取某链下所有的xrc20的合约地址
 func GetAllChainCoinKeys(chain string) ([]string, error) {
 	return redisService.client.SMembers(common.BuildChainContractsKey(chain)).Result()
 }

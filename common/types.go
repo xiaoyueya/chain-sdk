@@ -20,6 +20,7 @@ type CoinOrToken struct {
 	Decimals        uint   `json:"decimals"`
 	ContractAddress string `json:"contract_address"`
 	IsErc20         bool   `json:"is_erc_20"`
+	Threshold       string `json:"threshold"`
 }
 
 func (cot *CoinOrToken) GetContractSetKey() string {

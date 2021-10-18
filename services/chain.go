@@ -65,3 +65,30 @@ func AvailableClient(info *common.ChainInfo) (*ethclient.Client, error) {
 	bwlog.Logger.Info("got available client success,rpc index = %d,block height=%d\n", info.RpcIndex, height)
 	return client, err
 }
+
+func AvailableRpcUrl(info *common.ChainInfo) (string, error) {
+	rpcUrl := info.RPCUrls[info.RpcIndex]
+	client, err := ethclient.Dial(rpcUrl)
+	if err != nil {
+		return "", err
+	}
+	info.RpcIndex = info.RpcIndex + 1
+	if info.RpcIndex >= len(info.RPCUrls) {
+		info.RpcIndex = 0
+	}
+
+	height, err := client.BlockNumber(context.Background())
+	if err != nil {
+		return "", err
+	}
+
+	err = AddOrUpdateChain(info)
+	if err != nil {
+		return "", err
+	}
+	if height == 0 {
+		return "", errors.New("rpc url invalid")
+	}
+	bwlog.Logger.Info("got available client success,rpc index = %d,block height=%d\n", info.RpcIndex, height)
+	return rpcUrl, err
+}
