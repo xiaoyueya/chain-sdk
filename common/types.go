@@ -12,15 +12,16 @@ type ChainInfo struct {
 }
 
 type CoinOrToken struct {
-	Chain           string `json:"chain"`
-	ChainId         string `json:"chain_id"`
-	CustomName      string `json:"custom_name"`
-	TokenName       string `json:"token_name"`
-	Symbol          string `json:"symbol"`
-	Decimals        uint   `json:"decimals"`
-	ContractAddress string `json:"contract_address"`
-	IsErc20         bool   `json:"is_erc_20"`
-	Threshold       string `json:"threshold"`
+	Chain           string   `json:"chain"`
+	ChainId         string   `json:"chain_id"`
+	CustomName      string   `json:"custom_name"`
+	TokenName       string   `json:"token_name"`
+	Symbol          string   `json:"symbol"`
+	Decimals        uint     `json:"decimals"`
+	ContractAddress string   `json:"contract_address"`
+	IsErc20         bool     `json:"is_erc_20"`
+	Threshold       string   `json:"threshold"`
+	HistoryRecords  []string `json:"history_records"`
 }
 
 func (cot *CoinOrToken) GetContractSetKey() string {
