@@ -30,7 +30,7 @@ func SendTgMsg(botKey string, chatId string, title string, msgLines ...string) {
 
 		//msg.ParseMode = "markdown"
 		msg.ParseMode = "html"
-		msg.DisableWebPagePreview = true
+		//msg.DisableWebPagePreview = true
 		reply, err := bot.Send(msg)
 		if err != nil {
 			bwlog.Logger.Errorf("tg bog send msg error=%v\n", err)
