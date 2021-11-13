@@ -13,6 +13,10 @@ type RedisService struct {
 	client *redis.Client
 }
 
+func GetRawService() *RedisService {
+	return redisService
+}
+
 func InitRedisService(redisCfg *common.RedisConfig) error {
 	var err error
 	redisService, err = NewRedisService(redisCfg)
