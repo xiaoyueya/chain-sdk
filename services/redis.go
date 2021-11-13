@@ -15,14 +15,14 @@ type RedisService struct {
 
 func InitRedisService(redisCfg *common.RedisConfig) error {
 	var err error
-	redisService,err = NewRedisService(redisCfg)
+	redisService, err = NewRedisService(redisCfg)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func NewRedisService(redisCfg *common.RedisConfig) (*RedisService,error) {
+func NewRedisService(redisCfg *common.RedisConfig) (*RedisService, error) {
 	client, er := redisop.NewRedis(&redis.Options{
 		Addr:               redisCfg.Addr,
 		DB:                 redisCfg.DB,
@@ -38,7 +38,11 @@ func NewRedisService(redisCfg *common.RedisConfig) (*RedisService,error) {
 	)
 
 	if er != nil {
-		return nil,er
+		return nil, er
 	}
-	return &RedisService{client: client},nil
+	return &RedisService{client: client}, nil
+}
+
+func (service *RedisService) GetClient() *redis.Client {
+	return service.client
 }
