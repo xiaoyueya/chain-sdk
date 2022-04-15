@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/xiaoyueya/chain-sdk/bwlog"
 	"github.com/xiaoyueya/chain-sdk/common"
@@ -31,6 +32,7 @@ func GetChain(chain string) (*common.ChainInfo, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("redis buf=%s\n",buf)
 	chainInfo := new(common.ChainInfo)
 	err = json.Unmarshal(buf, chainInfo)
 	if err != nil {
